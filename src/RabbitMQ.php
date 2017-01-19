@@ -1,5 +1,5 @@
 <?php
-namespace Fsalehpour\RabbitMQ;
+namespace RabbitMQWrapper;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -14,11 +14,12 @@ class RabbitMQ
      */
     public function __construct($host = null, $port = null, $user = null, $password = null, $vhost = null)
     {
-        $this->connection = new AMQPStreamConnection(
-            env('RABBITMQ_HOST', 'localhost'), env('RABBITMQ_PORT', 5672),
-            env('RABBITMQ_USER', 'guest'), env('RABBITMQ_PASS', 'guest'),
-            env('RABBITMQ_VHOST', '/')
-        );
+        $host = $host ?:'localhost';
+        $port = $port ?:5672;
+        $user = $user ?:'guest';
+        $password = $password ?:'guest';
+        $vhost = $vhost ?:'/';
+        $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
     }
 
     public function channel()
