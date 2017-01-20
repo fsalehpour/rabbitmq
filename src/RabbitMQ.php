@@ -12,13 +12,8 @@ class RabbitMQ
     /**
      * RabbitMQ constructor.
      */
-    public function __construct($host = null, $port = null, $user = null, $password = null, $vhost = null)
+    public function __construct($host = 'localhost', $port = 5672, $user = 'guest', $password = 'guest', $vhost = '/')
     {
-        $host = $host ?:'localhost';
-        $port = $port ?:5672;
-        $user = $user ?:'guest';
-        $password = $password ?:'guest';
-        $vhost = $vhost ?:'/';
         $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
     }
 
