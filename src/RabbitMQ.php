@@ -35,11 +35,9 @@ class RabbitMQ
             $response = $response && true;
         });
         $ch->set_nack_handler(function (AMQPMessage $msg) use (&$response) {
-            Log::info('nack received');
             $response = $response && false;
         });
         $ch->set_return_listener(function ($replyCode, $replyText, $exchange, $routingKey, AMQPMessage $msg) use (&$response) {
-            Log::info('return received');
             $response = $response && false;
         });
 
