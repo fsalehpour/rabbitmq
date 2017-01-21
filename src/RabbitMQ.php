@@ -43,7 +43,7 @@ class RabbitMQ
 
         $ch->confirm_select();
         $ch->basic_publish($msg, $exchange, $routing_key, true);
-        $ch->wait_for_pending_acks_returns(5);
+        $ch->wait_for_pending_acks_returns();
         if (is_null($channel)) {
             $ch->close();
         }
