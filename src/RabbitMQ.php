@@ -22,6 +22,11 @@ class RabbitMQ
         return $this->connection->channel();
     }
 
+    public function getSocket()
+    {
+        return $this->connection->getSocket();
+    }
+
     /**
      * @param $ch
      * @param $msg
