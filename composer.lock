@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52fb6d2ec7b202c4a47d47b767d9dbff",
+    "hash": "92a2a57e98bbc7916a941eb1e98e43ba",
     "content-hash": "db2057d57a8630d96ea7feb19892d3ca",
     "packages": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "cb0433a8d1ab2d7952ae02bc7433ad181a0f1446"
+                "reference": "bfbc2d9f1e55aa5f397f1510ed27ea490579e622"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/cb0433a8d1ab2d7952ae02bc7433ad181a0f1446",
-                "reference": "cb0433a8d1ab2d7952ae02bc7433ad181a0f1446",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/bfbc2d9f1e55aa5f397f1510ed27ea490579e622",
+                "reference": "bfbc2d9f1e55aa5f397f1510ed27ea490579e622",
                 "shasum": ""
             },
             "require": {
@@ -75,7 +75,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2017-01-19 06:12:15"
+            "time": "2017-01-22 18:43:50"
         }
     ],
     "packages-dev": [],
