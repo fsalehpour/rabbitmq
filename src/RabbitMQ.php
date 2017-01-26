@@ -2,7 +2,7 @@
 namespace RabbitMQWrapper;
 
 use PhpAmqpLib\Channel\AMQPChannel;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Connection\AMQPSocketConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 class RabbitMQ
@@ -14,7 +14,7 @@ class RabbitMQ
      */
     public function __construct($host = 'localhost', $port = 5672, $user = 'guest', $password = 'guest', $vhost = '/')
     {
-        $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
+        $this->connection = new AMQPSocketConnection($host, $port, $user, $password, $vhost);
     }
 
     public function channel()
@@ -32,9 +32,9 @@ class RabbitMQ
      * @param $msg
      * @return mixed
      */
-    public function confirmed_publish(AMQPMessage $msg, $exchange, $routing_key, AMQPChannel $channel = null)
+    public function confirmed_publish(AMQPMessage $msg, $exchange, $routing_key, $timeout=null, AMQPChannel $channel = null)
     {
-        $ch = is_null($channel) ? $this->channel() : $channel;
+        $ch = $channel ?: $this->channel();
         $response = true;
         $ch->set_ack_handler(function (AMQPMessage $msg) use (&$response) {
             $response = $response && true;
@@ -48,7 +48,7 @@ class RabbitMQ
 
         $ch->confirm_select();
         $ch->basic_publish($msg, $exchange, $routing_key, true);
-        $ch->wait_for_pending_acks_returns();
+        $ch->wait_for_pending_acks_returns($timeout);
         if (is_null($channel)) {
             $ch->close();
         }
