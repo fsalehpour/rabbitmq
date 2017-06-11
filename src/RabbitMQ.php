@@ -2,7 +2,7 @@
 namespace RabbitMQWrapper;
 
 use PhpAmqpLib\Channel\AMQPChannel;
-use PhpAmqpLib\Connection\AMQPSocketConnection;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 /**
@@ -12,7 +12,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 class RabbitMQ
 {
     /**
-     * @var AMQPSocketConnection
+     * @var AMQPStreamConnection
      */
     private $connection;
 
@@ -26,7 +26,7 @@ class RabbitMQ
      */
     public function __construct($host = 'localhost', $port = 5672, $user = 'guest', $password = 'guest', $vhost = '/')
     {
-        $this->connection = new AMQPSocketConnection($host, $port, $user, $password, $vhost);
+        $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
     }
 
     /**
